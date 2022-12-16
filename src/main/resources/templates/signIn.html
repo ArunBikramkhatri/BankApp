@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
 <head>
     <meta charset="UTF-8">
     <title>Sign-IN</title>
 </head>
 <body>
-  <form>
-    Phone no<input type="text">
-    Password<input type="password">
-  </form>
 
+<section>
+  <form method="post" th:action="@{/e-bank/login-process}" >
+    Phone no<input type="text">
+    <br>Password<input type="password">
+      <div>
+          <button type="submit">Login</button>
+          <a th:href="@{/e-bank/register}"><button>Register</button></a>
+
+      </div>
+  </form>
+</section>
 </body>
 </html>

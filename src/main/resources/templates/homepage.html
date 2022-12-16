@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
 <head>
     <meta charset="UTF-8">
     <title>E-Bank</title>
 </head>
 <body>
 
-
+<section>
     <h1>Welcome to E-Bank . </h1>
     <h1>Now money transfer has become easier through us</h1>
 
     <div class="buttons">
-        <button>Send Money</button>
-        <button>Load Money</button>
-        <button>Bill Payment</button>
+        <a th:href="@{e-bank/user/send-money}"><button>Send Money</button></a>
+        <a th:href="@{e-bank/user/load-money}"><button>Load Money</button></a>
+        <a th:href="@{e-bank/user/bill-payment}"><button>Bill Payment</button></a>
+
     </div>
+</section>
     </body>
 </html>

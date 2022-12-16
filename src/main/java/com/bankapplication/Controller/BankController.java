@@ -19,4 +19,8 @@ public class BankController {
         return new ModelAndView("signIn");
     }
 
+    @GetMapping("/register")
+    public ModelAndView register(){
+        return new ModelAndView("Register");
+    }
 }
