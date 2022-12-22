@@ -18,9 +18,11 @@ public class User {
     private int id;
     private String name;
     private String password;
-    private Long phone;
+    private String phone;
 
     private String email;
+
+
 
     private String role;
 

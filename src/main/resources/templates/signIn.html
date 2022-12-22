@@ -8,13 +8,9 @@
 
 <section>
   <form method="post" th:action="@{/e-bank/login-process}" >
-    Phone no<input type="text">
-    <br>Password<input type="password">
-      <div>
-          <button type="submit">Login</button>
-          <a th:href="@{/e-bank/register}"><button>Register</button></a>
-
-      </div>
+    Phone no<input type="text" name="username">
+    <br>Password<input type="password" name="password">
+      <input type="submit">
   </form>
 </section>
 </body>
