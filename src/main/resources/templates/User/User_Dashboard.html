@@ -1,12 +1,23 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>E-Bank</title>
 </head>
 <body>
 
-Welcome User
+<section>
+    <h1>Welcome to E-Bank . </h1>
+    <h1>Now money transfer has become easier through us</h1>
 
+    <div class="buttons">
+        <a th:href="@{/e-bank/user/send-money}"><button>Send Money</button></a>
+        <a th:href="@{/e-bank/user/load-money}"><button>Load Money</button></a>
+        <a th:href="@{/e-bank/user/bill-payment}"><button>Bill Payment</button></a>
+
+    </div>
+</section>
 </body>
 </html>

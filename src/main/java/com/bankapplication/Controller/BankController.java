@@ -1,6 +1,7 @@
 package com.bankapplication.Controller;
 
 
+import com.bankapplication.Entities.BankDetails;
 import com.bankapplication.Entities.User;
 import com.bankapplication.Services.Userservices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Random;
 
 @Controller
 @RequestMapping("/e-bank")
@@ -50,7 +53,14 @@ public class BankController {
         }
 
         else{
+            BankDetails bankDetails = new BankDetails();
+            Random rand = new Random();
+            int bankNo = rand.nextInt(10000000);
+            bankDetails.setBank_no(bankNo);
+            bankDetails.setAmount(100000);
 
+            System.out.println(bankDetails.toString());
+            user.setBankDetails(bankDetails);
             user.setRole("ROLE_USER");
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userServices.saveUser(user);

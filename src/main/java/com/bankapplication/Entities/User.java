@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.springframework.web.service.annotation.GetExchange;
 
 @Data
@@ -25,5 +26,6 @@ public class User {
 
 
     private String role;
-
+    @OneToOne(cascade=CascadeType.ALL)
+    private BankDetails bankDetails;
 }
