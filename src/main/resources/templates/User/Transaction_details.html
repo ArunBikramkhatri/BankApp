@@ -6,9 +6,9 @@
 </head>
 <body>
 
-<form th:action="@{/e-bank/user/send-money/send-process}" >
-    Name :
-    Money :
+<form th:action="@{/e-bank/user/send-money/send-process}" th:object="${user}">
+    Name : <span th:text="${user.getName()}"></span>
+    Money :<span th:text="${amount}"></span>
 
     <input type="submit" value="Proceed">
     <input type="button" value="Cancel">

@@ -5,13 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.JoinColumnOrFormula;
 import org.springframework.web.service.annotation.GetExchange;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Bank_Users")
+@Table(name = "User")
 public class User {
 
     @Id
@@ -24,8 +25,21 @@ public class User {
     private String email;
 
 
-
     private String role;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "bank_no")
     private BankDetails bankDetails;
+
+    @Override
+    public String toString() {
+        return "User{" +
+
+                ", name='" + name + '\'' +
+
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+               
+                '}';
+    }
 }

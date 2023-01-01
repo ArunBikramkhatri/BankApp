@@ -3,10 +3,8 @@ package com.bankapplication.Services;
 import com.bankapplication.Entities.BankDetails;
 import com.bankapplication.Entities.User;
 import com.bankapplication.Repo.UserRepo;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,8 +19,9 @@ public class Userservices {
         this.userRepo = userRepo;
     }
 
-    public void saveUser(User u) {
+    public User saveUser(User u) {
         userRepo.save(u);
+        return u;
     }
 
     public User findUser(String phone) {
@@ -31,8 +30,9 @@ public class Userservices {
         return u;
     }
 
-    public User findUserBank(BankDetails bankDetails) {
-        User user = userRepo.findByBankDetails(bankDetails);
+    public User findUserBank(String bank_no) {
+        // int bankNoInt = Integer.parseInt(bank_no);
+        User user = userRepo.findByBankDetails(bank_no);
         return user;
     }
 }

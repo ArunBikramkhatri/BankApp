@@ -13,6 +13,8 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     @Query("select u from User u where u.phone = :phone")
     User findByPhone(@Param("phone") String phone);
 
-    @Query("select u from User u where u.bankDetails = :bankDetails")
-    User findByBankDetails(@Param("bankDetails") BankDetails bankDetails);
+    @Query("select u from User u where u.bankDetails.bank_no = :bank_no")
+    User findByBankDetails(@Param("bank_no") String bank_no);
+
+
 }

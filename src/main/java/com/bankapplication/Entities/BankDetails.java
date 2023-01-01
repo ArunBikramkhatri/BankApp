@@ -1,7 +1,6 @@
 package com.bankapplication.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BankDetails {
     @Id
-    private int bank_no;
+    private String bank_no;
 
-    private  int amount ;
+    private int amount;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bankDetails")
+    private User user;
+
+
+    @Override
+    public String toString() {
+        return "BankDetails{" +
+                "bank_no='" + bank_no + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }
