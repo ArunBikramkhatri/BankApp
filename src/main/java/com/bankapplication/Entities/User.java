@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.JoinColumnOrFormula;
-import org.springframework.web.service.annotation.GetExchange;
+
 
 @Data
 @AllArgsConstructor
@@ -39,7 +37,8 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-               
+                " bank_no = " + bankDetails.getBank_no() +
+
                 '}';
     }
 }

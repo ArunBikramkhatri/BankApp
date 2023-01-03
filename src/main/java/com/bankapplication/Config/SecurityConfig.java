@@ -2,7 +2,7 @@ package com.bankapplication.Config;
 
 
 import com.bankapplication.UserDetails.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,19 +14,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.util.Arrays;
+
 import java.util.Collections;
 
 @Configuration
-public class   SecurityConfig {
-
-
+public class SecurityConfig {
 
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -59,7 +58,7 @@ public class   SecurityConfig {
                 .loginPage("/e-bank/signIn")
                 .loginProcessingUrl("/e-bank/login-process")
                 .defaultSuccessUrl("/e-bank/user/dashboard")
-                ;
+        ;
 
         return http.build();
     }

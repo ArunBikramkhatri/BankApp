@@ -1,19 +1,15 @@
 package com.bankapplication.Controller;
 
-import com.bankapplication.Entities.BankDetails;
+
 import com.bankapplication.Entities.User;
-import com.bankapplication.Repo.BankRepo;
-import com.bankapplication.Repo.UserRepo;
-import com.bankapplication.Services.BankServices;
+
+
 import com.bankapplication.Services.TransactionService;
 import com.bankapplication.Services.Userservices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -23,11 +19,10 @@ public class SendMoneyController {
 
     @Autowired
     TransactionService transactionService;
-    @Autowired
-    private BankServices bankServices;
+
     @Autowired
     private Userservices userservices;
-    private User user;
+
 
     @GetMapping("")
     public String sendMoney() {
@@ -39,15 +34,16 @@ public class SendMoneyController {
 
 
         System.out.println(bankNo);
-        System.out.println(principal.getName());
+        //System.out.println(principal.getName());
 
         try {
 
 
-            User user = userservices.findUserBank(bankNo);
+            User receiver = userservices.findUserBank(bankNo);
+            // System.out.println(user.toString());
 
 
-            model.addAttribute("user", user);
+            model.addAttribute("user", receiver);
             model.addAttribute("amount", amount);
 
 
@@ -59,16 +55,18 @@ public class SendMoneyController {
     }
 
 
-    @GetMapping("/send-process")
-    public String send_process(Principal principal, @RequestParam("bankNo") String bankNo, @RequestParam("amount") int amount) {
+    @PostMapping("/send-process")
+    public String send_process(Principal principal, @RequestParam("bank_No") String r_bank_No, @RequestParam("amount") String amount) {
 
-        System.out.println(principal.getName());
 
-        User user1 = userservices.findUser(principal.getName());
-
-        String sender_b_no = user1.getBankDetails().getBank_no();
-        transactionService.transfer_money(sender_b_no, bankNo, amount);
-        bankServices.updateAmount(sender_b_no, amount);
+//        System.out.println(amount);
+//        System.out.println(principal.getName());
+//        System.out.println(bank_No);
+        User sender = userservices.findUser(principal.getName());
+//
+        String sender_b_no = sender.getBankDetails().getBank_no();
+//        String receiver_b_no = receiver.getBankDetails().getBank_no();
+        transactionService.transfer_money(sender_b_no, r_bank_No, amount);
 
         return "User/Success";
     }

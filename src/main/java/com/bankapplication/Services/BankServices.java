@@ -24,6 +24,7 @@ public class BankServices {
     }
 
     public void updateAmount(String acc_no, int amount) {
+        
         bankRepo.updateAmount(acc_no, amount);
     }
 

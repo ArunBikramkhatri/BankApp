@@ -5,12 +5,9 @@ import com.bankapplication.Entities.BankDetails;
 import com.bankapplication.Entities.User;
 import com.bankapplication.Services.BankServices;
 import com.bankapplication.Services.Userservices;
-import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +53,7 @@ public class BankController {
 
         if (userServices.findUser(user.getPhone()) != null) {
             System.out.print("User already exist");
-            return "register";
+            return "Register";
         } else {
 
             //set new bank details
@@ -71,11 +68,9 @@ public class BankController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setBankDetails(bankDetails);
 
-            //  System.out.println(bankDetails.toString());
-            // saved_user.setBankDetails(bankDetails);
 
             bankServices.saveUserDetails(user.getBankDetails());
-            User saved_user = userServices.saveUser(user);
+            userServices.saveUser(user);
 
 
             model.addAttribute(new User());

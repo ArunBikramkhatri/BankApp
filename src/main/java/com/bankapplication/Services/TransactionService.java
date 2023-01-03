@@ -16,7 +16,9 @@ public class TransactionService {
 
 
     @Transactional
-    public void transfer_money(String SenderAccountno, String recieverAccountno, Integer amount) {
+    public void transfer_money(String SenderAccountno, String recieverAccountno, String Samount) {
+
+        int amount = Integer.parseInt(Samount);
 
         BankDetails sender = bankServices.findBank(SenderAccountno);
 
@@ -26,8 +28,8 @@ public class TransactionService {
 
         int receiver_amount = receiver.getAmount() + amount;
 
-        bankServices.updateAmount(sender.getBank_no(), amount);
-        bankServices.updateAmount(receiver.getBank_no(), amount);
+        bankServices.updateAmount(sender.getBank_no(), sender_amount);
+        bankServices.updateAmount(receiver.getBank_no(), receiver_amount);
 
     }
 }

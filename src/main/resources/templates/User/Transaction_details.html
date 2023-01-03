@@ -6,10 +6,14 @@
 </head>
 <body>
 
-<form th:action="@{/e-bank/user/send-money/send-process}" th:object="${user}">
+<form method="post" th:action="@{/e-bank/user/send-money/send-process}" th:object="${user}">
     Name : <span th:text="${user.getName()}"></span>
     Money :<span th:text="${amount}"></span>
 
+    <input name="bank_No" th:value="${user.getBankDetails().getBank_no()}" type="hidden">
+    <input name="amount" th:value="${amount}" type="hidden">
+
+    <span name="bankNumber" th:text="${user.getBankDetails().getBank_no()}"></span>
     <input type="submit" value="Proceed">
     <input type="button" value="Cancel">
 </form>
