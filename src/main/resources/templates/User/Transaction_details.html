@@ -15,8 +15,18 @@
 
     <span name="bankNumber" th:text="${user.getBankDetails().getBank_no()}"></span>
     <input type="submit" value="Proceed">
-    <input type="button" value="Cancel">
+
+    <!-- form elements go here -->
+    <button id="cancel-button" type="button">cancel</button>
+
 </form>
 
 </body>
+
+<script>
+    document.getElementById('cancel-button').addEventListener('click', function () {
+        window.location.href = 'user/user/dashboard';  // redirect to homepage
+    });
+</script>
+
 </html>

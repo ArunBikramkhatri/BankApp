@@ -3,17 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+
+
 </head>
 <body>
 
 <div>
 
     <form method="post" th:action="@{/e-bank/user/send-money/transaction-details}">
-        <span>Enter bank no <input name="bankNo" type="text"></span>
+        <!--        <span>Enter bank no <input name="bankNo" type="text"></span>-->
 
-        <span>Enter amount <input name="amount" type="text"></span>
+        <!--        <span>Enter amount <input name="amount" type="text"></span>-->
+
+
+        <div class="col-md-6">
+            <label class="form-label" for="inputAddress1">Enter bank no</label>
+            <input class="form-control" id="inputAddress1" name="bankNo" th:classappend="${invalidbank}"
+                   type="text">
+
+            <div class="invalid-feedback" id="validationServer04Feedback">
+                Invalid Bank no
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label" for="inputAddress2">Enter Money</label>
+            <input class="form-control" id="inputAddress2" name="amount" th:classappend="${LessMoney}"
+                   type="text">
+
+            <div class="invalid-feedback" id="validationServer043Feedback">
+                Insufficient Money
+            </div>
+
+        </div>
+
+
         <input type="submit" value="Proceed">
+
+            <button id="cancel-button" type="button">Cancel</button>
+        </a>
     </form>
 </div>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.getElementById('cancel-button').addEventListener('click', function () {
+        window.location.href = 'user/user/dashboard';  // redirect to homepage
+    });
+</script>
 </body>
 </html>

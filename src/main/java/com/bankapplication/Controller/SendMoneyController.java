@@ -24,6 +24,14 @@ public class SendMoneyController {
     private Userservices userservices;
 
 
+    private User user;
+
+    @ModelAttribute
+    public void getUser(Principal principal, Model model) {
+        user = userservices.findUser(principal.getName());
+        model.addAttribute("user", user);
+    }
+
     @GetMapping("")
     public String sendMoney() {
         return "User/send_money";
@@ -39,8 +47,20 @@ public class SendMoneyController {
         try {
 
 
+            int sender_money = Integer.parseInt(amount);
+
+            
+            if ((user.getBankDetails().getAmount() - sender_money) < 0) {
+                model.addAttribute("LessMoney", "is-invalid");
+                return "User/send_money";
+            }
+
+
+            if (userservices.findUserBank(bankNo) == null) {
+                model.addAttribute("invalidbank", "is-invalid");
+                return "User/send_money";
+            }
             User receiver = userservices.findUserBank(bankNo);
-            // System.out.println(user.toString());
 
 
             model.addAttribute("user", receiver);
