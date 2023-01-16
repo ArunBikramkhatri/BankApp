@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <label class="form-label" for="inputAddress1">Enter bank no</label>
             <input class="form-control" id="inputAddress1" name="bankNo" th:classappend="${invalidbank}"
-                   type="text">
+                   type="text" required>
 
             <div class="invalid-feedback" id="validationServer04Feedback">
                 Invalid Bank no
@@ -34,7 +34,7 @@
         <div class="col-md-6">
             <label class="form-label" for="inputAddress2">Enter Money</label>
             <input class="form-control" id="inputAddress2" name="amount" th:classappend="${LessMoney}"
-                   type="text">
+                   type="text" required>
 
             <div class="invalid-feedback" id="validationServer043Feedback">
                 Insufficient Money
